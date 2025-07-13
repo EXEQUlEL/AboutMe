@@ -14,23 +14,34 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background: #f0f2f5;
+      background: url('src/fondo.jpg') center/cover fixed no-repeat;
       color: #333;
       line-height: 1.6;
     }
 
     .section {
+      background-color: #005092e7;
+      color: white;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 5rem 2rem;
+      padding: 12rem 4rem;
       gap: 3rem;
       flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1.2s ease-out, transform 1.6s ease-out;
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .section:nth-child(even) {
+      color: black;
       flex-direction: row-reverse;
-      background-color: #f9f9f9;
+      background-color: #00519431;
     }
 
     .text-content {
@@ -59,6 +70,8 @@
       border-radius: 999px;
       cursor: pointer;
       transition: background 0.3s ease;
+      margin-right: 10px;
+      margin-bottom: 10px;
     }
 
     .text-content button:hover {
@@ -71,19 +84,47 @@
       justify-content: center;
     }
 
-    .image-content img {
+    /* Clases para controlar el tamaño de las imágenes */
+    .img-vsmall {
+      width: 100%;
+      max-width: 150px;
+      height: auto;
+    }
+    .img-small {
+      width: 100%;
+      max-width: 200px;
+      height: auto;
+    }
+    
+    .img-medium {
       width: 100%;
       max-width: 320px;
+      height: auto;
+    }
+    
+    .img-large {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+    }
+
+    .image-content img {
       border-radius: 20px;
       object-fit: cover;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .image-content img:hover {
+      transform: scale(1.03);
     }
 
     footer {
       text-align: center;
-      padding: 2rem;
+      padding: 1.4rem;
       font-size: 0.9rem;
-      color: #777;
+      background: #00001ad0;
+      color: white;
     }
 
     @media (max-width: 768px) {
@@ -94,6 +135,10 @@
       .text-content {
         max-width: 90%;
       }
+      .text-content button {
+        margin-right: 5px;
+        margin-left: 5px;
+      }
     }
   </style>
 </head>
@@ -102,12 +147,12 @@
   <!-- Sección 1 -->
   <section class="section">
     <div class="text-content">
-      <h1>Hola, soy Benjamín.</h1>
+      <h1>Hola, soy Exequiel.</h1>
       <p>Ingeniero Civil en Informática con experiencia en soporte TI, redes y mantenimiento.</p>
       <button onclick="location.href='#contacto'">Contáctame</button>
     </div>
     <div class="image-content">
-       <img src="src/ME.jpeg" alt="Benjamín Sanhueza">
+       <img src="src/ME.jpeg" alt="Benjamín Sanhueza" class="img-medium">
     </div>
   </section>
 
@@ -118,7 +163,7 @@
       <p>Profesional informático especializado en administración de equipos, redes y supervisión de proyectos; destacada capacidad para optimizar procesos, resolver incidencias y garantizar la continuidad operacional. Orientado a la generación de reportes analíticos e implementación de buenas prácticas operacionales.</p>
     </div>
     <div class="image-content">
-      <img src="src/enfoque.png" alt="Formación académica">
+      <img src="src/enfoque.png" alt="Formación académica" class="img-small">
     </div>
   </section>
 
@@ -131,7 +176,7 @@
       <button onclick="location.href='#Hospital'">Ver Hospital</button><button onclick="location.href='#Super'">Ver Supermercado</button>
     </div>
     <div class="image-content">
-      <img src="src/carrera-profesional.png" alt="Experiencia laboral">
+      <img src="src/carrera-profesional.png" alt="Experiencia laboral" class="img-small">
     </div>
   </section>
 
@@ -143,7 +188,7 @@
       <p>Gestionó el mantenimiento preventivo y correctivo de equipos informáticos: actualización de hardware, instalación de SO (Windows/Linux) y backups automatizados; implementó una red de impresoras mediante IP estática, integrando 15+ dispositivos en distintas áreas administrativas; desplegó infraestructura de red física: habilitación de puertos Ethernet y PoE para áreas críticas, optimizando la conectividad.
     </p> </div>
     <div class="image-content">
-      <img src="src/hospital.png" alt="Formación académica">
+      <img src="src/hospital.png" alt="Formación académica" class="img-small">
     </div>
   </section>
     <!-- Sección 5 -->
@@ -156,7 +201,7 @@ Apoyó directamente en la atención a clientes, guiándolos en la búsqueda de p
 </p>    
         </div>
     <div class="image-content">
-      <img src="src/supermercado.png" alt="Formación académica">
+      <img src="src/supermercado.png" alt="Formación académica" class="img-small">
     </div>
   </section>
 
@@ -172,7 +217,7 @@ Apoyó directamente en la atención a clientes, guiándolos en la búsqueda de p
       </ul></p>    
         </div>
     <div class="image-content">
-      <img src="src/skills.png" alt="Formación académica">
+      <img src="src/skills.png" alt="Formación académica" class="img-small">
     </div>
   </section>
 
@@ -184,13 +229,34 @@ Apoyó directamente en la atención a clientes, guiándolos en la búsqueda de p
       <button onclick="window.open('mailto:benjaminsanhueza84@gmail.com')">Enviar correo</button>
     </div>
     <div class="image-content">
-      <img src="src/contactos.png" alt="Contáctame">
+      <img src="src/contactos.png" alt="Contáctame" class="img-vsmall">
     </div>
   </section>
 
   <footer>
-    © 2025 Benjamín Sanhueza. Todos los derechos reservados.
+    © 2025 Exequiel Sanhueza. Todos los derechos reservados.
   </footer>
 
+  <script>
+    // Observador de intersección para las animaciones
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        } else {
+          // Remover la clase visible cuando el elemento no está en vista
+          entry.target.classList.remove('visible');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px 5px 0px' // Añade un margen negativo inferior
+    });
+
+    // Observar todas las secciones
+    document.querySelectorAll('.section').forEach(section => {
+      observer.observe(section);
+    });
+  </script>
 </body>
 </html>
