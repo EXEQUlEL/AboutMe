@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Benjamín Sanhueza - About Me</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f0f2f5;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5rem 2rem;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .section:nth-child(even) {
+      flex-direction: row-reverse;
+      background-color: #f9f9f9;
+    }
+
+    .text-content {
+      flex: 1 1 400px;
+      max-width: 500px;
+    }
+
+    .text-content h1,
+    .text-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .text-content p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    .text-content button {
+      background: #0d6efd;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .text-content button:hover {
+      background: #084298;
+    }
+
+    .image-content {
+      flex: 1 1 300px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .image-content img {
+      width: 100%;
+      max-width: 320px;
+      border-radius: 20px;
+      object-fit: cover;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    @media (max-width: 768px) {
+      .section {
+        flex-direction: column !important;
+        text-align: center;
+      }
+      .text-content {
+        max-width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sección 1 -->
+  <section class="section">
+    <div class="text-content">
+      <h1>Hola, soy Benjamín.</h1>
+      <p>Ingeniero Civil en Informática con experiencia en soporte TI, redes y mantenimiento.</p>
+      <button onclick="location.href='#contacto'">Contáctame</button>
+    </div>
+    <div class="image-content">
+       <img src="https://drive.google.com/uc?export=view&id=1LpzrHhhWE9Ek2czc_Jeih_ejinA0YUeH" alt="Benjamín Sanhueza">
+    </div>
+  </section>
+
+  <!-- Sección 2 -->
+  <section class="section">
+    <div class="text-content">
+      <h2>Mi enfoque</h2>
+      <p>Profesional informático especializado en administración de equipos, redes y supervisión de proyectos; destacada capacidad para optimizar procesos, resolver incidencias y garantizar la continuidad operacional. Orientado a la generación de reportes analíticos e implementación de buenas prácticas operacionales.</p>
+    </div>
+    <div class="image-content">
+      <img src="https://via.placeholder.com/400x400.png?text=Educación" alt="Formación académica">
+    </div>
+  </section>
+
+  <!-- Sección 3 -->
+  <section class="section">
+    <div class="text-content">
+      <h2>Experiencia laboral</h2>
+      <button onclick="location.href='#Hospital'">Contáctame</button>
+      <p>He trabajado en entornos exigentes como supermercados y hospitales, destacándome por mi responsabilidad y habilidades técnicas. Mi práctica en el Hospital Makewe reforzó mi capacidad para implementar redes y mantener equipos críticos.</p>
+      
+      <button onclick="location.href='#Hospital'">Ver Hospital</button><button onclick="location.href='#Super'">Ver Supermercado</button>
+    </div>
+    <div class="image-content">
+      <img src="https://via.placeholder.com/400x400.png?text=Experiencia" alt="Experiencia laboral">
+    </div>
+  </section>
+
+  <!-- Sección 4 -->
+  <section class="section" id="Hospital">
+    <div class="text-content">
+    <h3>Práctica en Tecnologías de la Información (TIC)
+        Hospital Intercultural Makewe | Dic 2023 - Ene 2024 | 180 horas</h3>
+      <p>Gestionó el mantenimiento preventivo y correctivo de equipos informáticos: actualización de hardware, instalación de SO (Windows/Linux) y backups automatizados; implementó una red de impresoras mediante IP estática, integrando 15+ dispositivos en distintas áreas administrativas; desplegó infraestructura de red física: habilitación de puertos Ethernet y PoE para áreas críticas, optimizando la conectividad.
+    </p> </div>
+    <div class="image-content">
+      <img src="https://via.placeholder.com/400x400.png?text=Educación" alt="Formación académica">
+    </div>
+  </section>
+    <!-- Sección 5 -->
+  <section class="section" id="Super">
+    <div class="text-content">
+    <h3>Asistente de Reposición y Atención al Cliente
+Supermercado Jumbo Temuco (LIBESA y Manpower) | Ene 2023 a Mar 2023 / Ene 2024 a Mar 2024 / Ene 2025 a Mar 2025</h3>
+      <p>
+Apoyó directamente en la atención a clientes, guiándolos en la búsqueda de productos; colaboró en tareas de inventario y orden de góndolas; desarrolló habilidades de comunicación, organización y orientación al cliente.
+</p>    
+        </div>
+    <div class="image-content">
+      <img src="https://via.placeholder.com/400x400.png?text=Educación" alt="Formación académica">
+    </div>
+  </section>
+
+  <!-- Sección 6 -->
+  <section class="section" id="Super">
+    <div class="text-content">
+    <h2>Habilidades</h2>    
+    <p>      <ul>
+        <li>🧰 Soporte técnico, instalación de sistemas, armado de PCs.</li>
+        <li>👨‍💻 Lenguajes y herramientas: Python, JavaScript, Linux, GNS3, Cisco Packet Tracer.</li>
+        <li>🤝 Atención al cliente, escucha activa, resolución de problemas.</li>
+        <li>📦 Inventario, gestión de stock, trabajo en equipo.</li>
+      </ul></p>    
+        </div>
+    <div class="image-content">
+      <img src="https://via.placeholder.com/400x400.png?text=Educación" alt="Formación académica">
+    </div>
+  </section>
+
+  <!-- Sección 7 -->
+  <section class="section" id="contacto">
+    <div class="text-content">
+      <h2>Hablemos</h2>
+      <p>¿Quieres trabajar conmigo o simplemente conversar sobre tecnología? Escríbeme a <a href="mailto:benjaminsanhueza84@gmail.com">benjaminsanhueza84@gmail.com</a> o contáctame por WhatsApp al <strong>+56 9 7748 4997</strong>.</p>
+      <button onclick="window.open('mailto:benjaminsanhueza84@gmail.com')">Enviar correo</button>
+    </div>
+    <div class="image-content">
+      <img src="https://via.placeholder.com/400x400.png?text=Contacto" alt="Contáctame">
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Benjamín Sanhueza. Todos los derechos reservados.
+  </footer>
+
+</body>
+</html>
