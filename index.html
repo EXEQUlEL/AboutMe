@@ -1,11 +1,23 @@
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Benjamín Sanhueza - About Me</title>
+  <title>Exequiel Sanhueza - Portafolio Profesional</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --azul-principal: #005092e7;
+      --azul-suave: #00519431;
+      --boton: #0d6efd;
+      --boton-hover: #084298;
+      --fondo-footer: #00001ad0;
+      --blanco: #ffffff;
+      --gris-oscuro: #333;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -15,100 +27,98 @@
     body {
       font-family: 'Inter', sans-serif;
       background: url('src/fondo.jpg') center/cover fixed no-repeat;
-      color: #333;
+      color: var(--gris-oscuro);
       line-height: 1.6;
     }
 
-    .section {
-      background-color: #005092e7;
-      color: white;
+    section {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12rem 4rem;
-      gap: 3rem;
       flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+      padding: 6rem 2rem;
+      transition: opacity 1.2s ease-out, transform 1.6s ease-out;
       opacity: 0;
       transform: translateY(20px);
-      transition: opacity 1.2s ease-out, transform 1.6s ease-out;
     }
 
-    .section.visible {
+    section.visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .section:nth-child(even) {
-      color: black;
+    section:nth-child(odd) {
+      background-color: var(--azul-principal);
+      color: var(--blanco);
+    }
+
+    section:nth-child(even) {
+      background-color: var(--azul-suave);
+      color: var(--gris-oscuro);
       flex-direction: row-reverse;
-      background-color: #00519431;
     }
 
     .text-content {
-      flex: 1 1 400px;
+      flex: 1 1 320px;
       max-width: 500px;
     }
 
     .text-content h1,
-    .text-content h2 {
+    .text-content h2,
+    .text-content h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 2.4rem;
+      font-size: clamp(1.8rem, 5vw, 2.4rem);
       margin-bottom: 1rem;
     }
 
-    .text-content p {
-      font-size: 1.1rem;
-      margin-bottom: 2rem;
+    .text-content p, .text-content ul {
+      font-size: 1.05rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .text-content ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .text-content ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .text-content a {
+      color: var(--blanco);
+      text-decoration: underline;
     }
 
     .text-content button {
-      background: #0d6efd;
-      color: white;
+      background: var(--boton);
+      color: var(--blanco);
       border: none;
-      padding: 0.8rem 1.5rem;
+      padding: 0.75rem 1.4rem;
       font-size: 1rem;
-      border-radius: 999px;
+      border-radius: 50px;
       cursor: pointer;
       transition: background 0.3s ease;
-      margin-right: 10px;
-      margin-bottom: 10px;
+      margin: 5px;
     }
 
-    .text-content button:hover {
-      background: #084298;
+    .text-content button:hover,
+    .text-content button:focus {
+      background: var(--boton-hover);
+      outline: none;
     }
 
     .image-content {
-      flex: 1 1 300px;
+      flex: 1 1 280px;
       display: flex;
       justify-content: center;
     }
 
-    /* Clases para controlar el tamaño de las imágenes */
-    .img-vsmall {
-      width: 100%;
-      max-width: 150px;
-      height: auto;
-    }
-    .img-small {
-      width: 100%;
-      max-width: 200px;
-      height: auto;
-    }
-    
-    .img-medium {
-      width: 100%;
-      max-width: 320px;
-      height: auto;
-    }
-    
-    .img-large {
-      width: 100%;
-      max-width: 400px;
-      height: auto;
-    }
-
     .image-content img {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
       border-radius: 20px;
       object-fit: cover;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
@@ -121,142 +131,144 @@
 
     footer {
       text-align: center;
-      padding: 1.4rem;
+      padding: 1.5rem 1rem;
+      background: var(--fondo-footer);
+      color: var(--blanco);
       font-size: 0.9rem;
-      background: #00001ad0;
-      color: white;
     }
 
     @media (max-width: 768px) {
-      .section {
+      section {
         flex-direction: column !important;
         text-align: center;
+        padding: 4rem 1.5rem;
       }
+
       .text-content {
-        max-width: 90%;
+        max-width: 100%;
       }
+
       .text-content button {
-        margin-right: 5px;
-        margin-left: 5px;
+        margin: 5px auto;
+      }
+
+      .image-content {
+        margin-top: 1rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Sección 1 -->
-  <section class="section">
-    <div class="text-content">
-      <h1>Hola, soy Exequiel.</h1>
-      <p>Ingeniero Civil en Informática con experiencia en soporte TI, redes y mantenimiento.</p>
-      <button onclick="location.href='#contacto'">Contáctame</button>
-    </div>
-    <div class="image-content">
-       <img src="src/ME.jpeg" alt="Benjamín Sanhueza" class="img-medium">
-    </div>
-  </section>
+  <main>
 
-  <!-- Sección 2 -->
-  <section class="section">
-    <div class="text-content">
-      <h2>Mi enfoque</h2>
-      <p>Profesional informático especializado en administración de equipos, redes y supervisión de proyectos; destacada capacidad para optimizar procesos, resolver incidencias y garantizar la continuidad operacional. Orientado a la generación de reportes analíticos e implementación de buenas prácticas operacionales.</p>
-    </div>
-    <div class="image-content">
-      <img src="src/enfoque.png" alt="Formación académica" class="img-small">
-    </div>
-  </section>
+    <!-- Sección de presentación -->
+    <section class="section">
+      <div class="text-content">
+        <h1>Hola, soy Exequiel.</h1>
+        <p>Ingeniero Civil en Informática con experiencia en soporte TI, redes y mantenimiento.</p>
+        <button onclick="location.href='#contacto'" aria-label="Ir a contacto">Contáctame</button>
+      </div>
+      <div class="image-content">
+        <img src="src/ME.jpeg" alt="Retrato profesional de Exequiel Sanhueza" loading="lazy">
+      </div>
+    </section>
 
-  <!-- Sección 3 -->
-  <section class="section">
-    <div class="text-content">
-      <h2>Experiencia laboral</h2>
-      <p>He trabajado en entornos exigentes como supermercados y hospitales, destacándome por mi responsabilidad y habilidades técnicas. Mi práctica en el Hospital Makewe reforzó mi capacidad para implementar redes y mantener equipos críticos.</p>
-      
-      <button onclick="location.href='#Hospital'">Ver Hospital</button><button onclick="location.href='#Super'">Ver Supermercado</button>
-    </div>
-    <div class="image-content">
-      <img src="src/carrera-profesional.png" alt="Experiencia laboral" class="img-small">
-    </div>
-  </section>
+    <!-- Enfoque -->
+    <section class="section">
+      <div class="text-content">
+        <h2>Mi enfoque</h2>
+        <p>Profesional informático especializado en administración de equipos, redes y supervisión de proyectos; destacada capacidad para optimizar procesos, resolver incidencias y garantizar la continuidad operacional.</p>
+      </div>
+      <div class="image-content">
+        <img src="src/enfoque.png" alt="Imagen representativa del enfoque profesional" loading="lazy">
+      </div>
+    </section>
 
-  <!-- Sección 4 -->
-  <section class="section" id="Hospital">
-    <div class="text-content">
-    <h3>Práctica en Tecnologías de la Información (TIC)
-        Hospital Intercultural Makewe | Dic 2023 - Ene 2024 | 180 horas</h3>
+    <!-- Experiencia laboral -->
+    <section class="section">
+      <div class="text-content">
+        <h2>Experiencia laboral</h2>
+        <p>He trabajado en entornos exigentes como supermercados y hospitales, destacándome por mi responsabilidad y habilidades técnicas. Mi práctica en el Hospital Makewe reforzó mi capacidad para implementar redes y mantener equipos críticos.</p>
+              <button onclick="location.href='#Hospital'">Ver Hospital</button>
+        <button onclick="location.href='#Super'">Ver Supermercado</button>
+      </div>
+      <div class="image-content">
+        <img src="src/carrera-profesional.png" alt="Carrera profesional" loading="lazy">
+      </div>
+    </section>
+
+    <!-- Hospital -->
+    <section class="section" id="Hospital">
+      <div class="text-content">
+        <h4>Práctica en Tecnologías de la Información (TIC)
+        Hospital Intercultural Makewe | Dic 2023 - Ene 2024 | 180 horas</h4><br>
       <p>Gestionó el mantenimiento preventivo y correctivo de equipos informáticos: actualización de hardware, instalación de SO (Windows/Linux) y backups automatizados; implementó una red de impresoras mediante IP estática, integrando 15+ dispositivos en distintas áreas administrativas; desplegó infraestructura de red física: habilitación de puertos Ethernet y PoE para áreas críticas, optimizando la conectividad.
-    </p> </div>
-    <div class="image-content">
-      <img src="src/hospital.png" alt="Formación académica" class="img-small">
-    </div>
-  </section>
-    <!-- Sección 5 -->
-  <section class="section" id="Super">
-    <div class="text-content">
-    <h3>Asistente de Reposición y Atención al Cliente
-Supermercado Jumbo Temuco (LIBESA y Manpower) | Ene 2023 a Mar 2023 / Ene 2024 a Mar 2024 / Ene 2025 a Mar 2025</h3>
+    </p>      </div>
+      <div class="image-content">
+        <img src="src/hospital.png" alt="Hospital Intercultural Makewe" loading="lazy">
+      </div>
+    </section>
+
+    <!-- Supermercado -->
+    <section class="section" id="Super">
+      <div class="text-content">
+        <h4>Asistente de Reposición y Atención al Cliente
+Supermercado Jumbo Temuco (LIBESA y Manpower) | Ene 2023 a Mar 2023 / Ene 2024 a Mar 2024 / Ene 2025 a Mar 2025</h4><br>
       <p>
 Apoyó directamente en la atención a clientes, guiándolos en la búsqueda de productos; colaboró en tareas de inventario y orden de góndolas; desarrolló habilidades de comunicación, organización y orientación al cliente.
-</p>    
-        </div>
-    <div class="image-content">
-      <img src="src/supermercado.png" alt="Formación académica" class="img-small">
-    </div>
-  </section>
+</p>      </div>
+      <div class="image-content">
+        <img src="src/supermercado.png" alt="Interior de supermercado Jumbo" loading="lazy">
+      </div>
+    </section>
 
-  <!-- Sección 6 -->
-  <section class="section" id="Super">
-    <div class="text-content">
-    <h2>Habilidades</h2>    
-    <p>      <ul>
-        <li>🧰 Soporte técnico, instalación de sistemas, armado de PCs.</li>
-        <li>👨‍💻 Lenguajes y herramientas: Python, JavaScript, Linux, GNS3, Cisco Packet Tracer.</li>
-        <li>🤝 Atención al cliente, escucha activa, resolución de problemas.</li>
-        <li>📦 Inventario, gestión de stock, trabajo en equipo.</li>
-      </ul></p>    
-        </div>
-    <div class="image-content">
-      <img src="src/skills.png" alt="Formación académica" class="img-small">
-    </div>
-  </section>
+    <!-- Habilidades -->
+    <section class="section">
+      <div class="text-content">
+        <h2>Habilidades</h2>
+        <ul>
+          <li>🧰 Soporte técnico, instalación de sistemas, armado de PCs.</li>
+          <li>👨‍💻 Python, JavaScript, Linux, GNS3, Cisco Packet Tracer.</li>
+          <li>🤝 Atención al cliente, escucha activa, resolución de problemas.</li>
+          <li>📦 Inventario, gestión de stock, trabajo en equipo.</li>
+        </ul>
+      </div>
+      <div class="image-content">
+        <img src="src/skills.png" alt="Habilidades técnicas e interpersonales" loading="lazy">
+      </div>
+    </section>
 
-  <!-- Sección 7 -->
-  <section class="section" id="contacto">
-    <div class="text-content">
-      <h2>Hablemos</h2>
-      <p>¿Quieres trabajar conmigo o simplemente conversar sobre tecnología? Escríbeme a <a href="mailto:benjaminsanhueza84@gmail.com">benjaminsanhueza84@gmail.com</a> o contáctame por WhatsApp al <strong>+56 9 7748 4997</strong>.</p>
-      <button onclick="window.open('mailto:benjaminsanhueza84@gmail.com')">Enviar correo</button>
-    </div>
-    <div class="image-content">
-      <img src="src/contactos.png" alt="Contáctame" class="img-vsmall">
-    </div>
-  </section>
+    <!-- Contacto -->
+    <section class="section" id="contacto">
+      <div class="text-content">
+        <h2>Hablemos</h2>
+        <p>¿Te interesa colaborar o conversar sobre tecnología?</p>
+        <p>Escríbeme a <a href="mailto:benjaminsanhueza84@gmail.com">benjaminsanhueza84@gmail.com</a> o contáctame al <strong>+56 9 7748 4997</strong>.</p>
+        <button onclick="window.open('mailto:benjaminsanhueza84@gmail.com')" aria-label="Enviar correo">Enviar correo</button>
+      </div>
+      <div class="image-content">
+        <img src="src/contactos.png" alt="Icono de contacto" class="img-vsmall" loading="lazy">
+      </div>
+    </section>
+
+  </main>
 
   <footer>
     © 2025 Exequiel Sanhueza. Todos los derechos reservados.
   </footer>
 
   <script>
-    // Observador de intersección para las animaciones
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        } else {
-          // Remover la clase visible cuando el elemento no está en vista
-          entry.target.classList.remove('visible');
-        }
+        entry.target.classList.toggle('visible', entry.isIntersecting);
       });
     }, {
       threshold: 0.1,
-      rootMargin: '0px 0px 5px 0px' // Añade un margen negativo inferior
+      rootMargin: '0px 0px 5px 0px'
     });
 
-    // Observar todas las secciones
-    document.querySelectorAll('.section').forEach(section => {
-      observer.observe(section);
-    });
+    document.querySelectorAll('.section').forEach(section => observer.observe(section));
   </script>
 </body>
 </html>
