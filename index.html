@@ -198,6 +198,109 @@
       border-top: 1px solid var(--border);
       margin-top: 4rem;
     }
+/* =========================
+   Responsive mobile
+   ========================= */
+
+@media (max-width: 768px) {
+
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+
+  header nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  header a {
+    margin-left: 0;
+  }
+
+  main {
+    padding: 1.5rem;
+  }
+
+  .hero {
+    min-height: 75vh;
+  }
+
+  .hero-content {
+    padding: 0 1.5rem;
+    text-align: left;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero h2 {
+    font-size: 1.4rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .hero .btn {
+    margin: 0.5rem 0.5rem 0 0;
+    width: auto;
+  }
+
+  .section {
+    padding: 3.5rem 0;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  .grid-3 {
+    gap: 1.5rem;
+  }
+
+  /* Contacto */
+  .contacto-grid {
+    gap: 2.5rem;
+  }
+
+  .contacto-texto {
+    text-align: center;
+  }
+
+  .mail {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .hero {
+    min-height: 70vh;
+  }
+
+  .hero-content {
+    padding: 0 1rem;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero h2 {
+    font-size: 1.25rem;
+  }
+
+  .hero p {
+    font-size: 0.95rem;
+  }
+}
 
   </style>
 </head>
