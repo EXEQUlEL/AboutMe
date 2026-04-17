@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Supra MK4 | Heritage Collection | Uniform Aspect Ratio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --accent: #C5A572;
+            --accent-dark: #9B7B4A;
+            --bg-light: #F5F5F5;
+            --bg-dark: #121212;
+            --surface-dark: #1E1E1E;
+            --text-primary: #EAEAEA;
+            --text-secondary: #A0A0A0;
+            --glass-border: rgba(255,255,255,0.08);
+            --glow-gold: rgba(197, 165, 114, 0.6);
+            --grad-dark: linear-gradient(135deg, #141414 0%, #1A1A1A 100%);
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, 'Roboto', sans-serif;
+            background: var(--bg-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 32px 24px;
+        }
+
+        /* Contenedor principal: dos columnas (texto izquierda | imagen derecha) */
+        .split-layout {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1440px;
+            width: 100%;
+            background: #FFFFFF;
+            border-radius: 32px;
+            box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0,0,0,0.02);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* COLUMNA IZQUIERDA: contenido textual refinado (sin emojis) */
+        .text-side {
+            flex: 1.2;
+            background: var(--grad-dark);
+            padding: 2.5rem 2.2rem;
+            color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1.8rem;
+        }
+
+        .vehicle-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 500;
+            border-bottom: 1px solid rgba(197,165,114,0.4);
+            width: fit-content;
+            padding-bottom: 6px;
+        }
+
+        .text-side h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: #FFFFFF;
+        }
+
+        .text-side h1 .model-code {
+            font-weight: 400;
+            color: var(--accent);
+            font-size: 1.2rem;
+            display: inline-block;
+            margin-left: 8px;
+            letter-spacing: 1px;
+        }
+
+        .tagline {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            border-left: 2px solid var(--accent);
+            padding-left: 14px;
+            margin-top: -8px;
+            letter-spacing: 0.2px;
+        }
+
+        .specs-panel {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 20px;
+            padding: 1.4rem;
+            backdrop-filter: blur(2px);
+            border: 1px solid var(--glass-border);
+        }
+
+        .specs-panel h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .spec-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem 1rem;
+        }
+
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px dashed rgba(255,255,255,0.1);
+            padding-bottom: 6px;
+        }
+
+        .spec-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            letter-spacing: 0.5px;
+        }
+
+        .spec-value {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: white;
+            margin-top: 2px;
+        }
+
+        .highlight-text {
+            background: rgba(197, 165, 114, 0.08);
+            padding: 1rem 1.2rem;
+            border-radius: 18px;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            border-left: 3px solid var(--accent);
+            color: #D4D4D4;
+        }
+
+        .instruction-note {
+            font-size: 0.75rem;
+            color: #7A7F8C;
+            text-align: left;
+            background: rgba(0,0,0,0.3);
+            padding: 10px 14px;
+            border-radius: 40px;
+            letter-spacing: 0.2px;
+        }
+
+        .instruction-note strong {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* COLUMNA DERECHA: zona de imagen interactiva con TAMAÑO UNIFORME */
+        .image-side {
+            flex: 1.6;
+            background: #0A0A0A;
+            padding: 1.8rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-header {
+            text-align: center;
+            margin-bottom: 1rem;
+            width: 100%;
+        }
+
+        .image-header h2 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            color: #C5C5C5;
+            text-transform: uppercase;
+            background: none;
+            -webkit-background-clip: unset;
+            color: #B0B0B0;
+        }
+
+        /* --- CLAVE: contenedor con alto fijo y ancho máximo controlado --- */
+        /* Todas las imágenes dentro tendrán exactamente el mismo alto (460px) y 
+           se adaptarán al ancho máximo de 100% sin distorsión, manteniendo proporción */
+        .image-wrapper {
+            position: relative;
+            width: 100%;
+            background: #050505;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.7);
+            /* 
+              ALTURA FIJA para todas las imágenes: 460px. 
+              Así sin importar la imagen original, ocuparán exactamente el mismo alto.
+              El ancho máximo será el 100% del contenedor padre, pero con object-fit contain
+              la imagen se escala respetando su relación de aspecto y se centra.
+            */
+            height: 460px;
+            max-width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Estilo unificado para TODAS las imágenes: mismo alto y ancho máximo consistente */
+        .fixed-size-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;   /* Mantiene proporción, sin recortes, fondo negro elegante */
+            background: #F5F5F5;
+            transition: opacity 0.25s ease;
+            border-radius: 20px;
+        }
+
+        /* Hotspots refinados: círculos metálicos sin animación exagerada */
+        .custom-hotspots {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 20;
+        }
+
+        .hotspot-circle {
+            position: absolute;
+            width: 42px;
+            height: 42px;
+            background: rgba(25, 25, 30, 0.85);
+            backdrop-filter: blur(3px);
+            border-radius: 50%;
+            cursor: pointer;
+            pointer-events: auto;
+            transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            box-shadow: 0 0 0 1px rgba(197,165,114,0.6), 0 2px 8px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 400;
+            color: #E0C894;
+            font-size: 18px;
+            transform: translate(-50%, -50%);
+            border: none;
+        }
+
+        .hotspot-circle::before {
+            content: "";
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .hotspot-circle:hover {
+            background: var(--accent);
+            box-shadow: 0 0 0 2px rgba(255,255,240,0.7), 0 0 0 4px rgba(197,165,114,0.3);
+            transform: translate(-50%, -50%) scale(1.08);
+        }
+
+        .hotspot-circle:active {
+            transform: translate(-50%, -50%) scale(0.96);
+            background: #A58146;
+        }
+
+        /* Botón de reset elegante */
+        .reset-btn-container {
+            margin-top: 22px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .btn-reset {
+            background: transparent;
+            border: 1px solid rgba(197,165,114,0.5);
+            padding: 10px 28px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            border-radius: 40px;
+            color: #E0C894;
+            cursor: pointer;
+            transition: all 0.2s;
+            backdrop-filter: blur(4px);
+            font-family: inherit;
+        }
+
+        .btn-reset:hover {
+            background: rgba(197,165,114,0.12);
+            border-color: var(--accent);
+            color: #F5E1B0;
+            transform: translateY(-1px);
+        }
+
+        .footer-meta {
+            margin-top: 16px;
+            font-size: 0.65rem;
+            letter-spacing: 0.3px;
+            color: #5F5F6A;
+            text-align: center;
+            background: rgba(20,20,25,0.6);
+            padding: 6px 14px;
+            border-radius: 30px;
+            width: fit-content;
+            backdrop-filter: blur(4px);
+        }
+
+        /* Responsive: en pantallas pequeñas la altura fija se reduce un poco
+           pero todas las imágenes siguen compartiendo la misma altura dentro del wrapper */
+        @media (max-width: 850px) {
+            .split-layout {
+                flex-direction: column;
+            }
+            .text-side {
+                text-align: left;
+            }
+            .spec-grid {
+                grid-template-columns: 1fr;
+            }
+            .hotspot-circle {
+                width: 36px;
+                height: 36px;
+            }
+            .text-side h1 {
+                font-size: 2.2rem;
+            }
+            .image-wrapper {
+                height: 380px;  /* Sigue siendo uniforme para todas las imágenes */
+            }
+        }
+
+        @media (max-width: 550px) {
+            .image-wrapper {
+                height: 280px;  /* Misma altura para todos los assets en móvil */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="split-layout">
+    <!-- COLUMNA IZQUIERDA: contenido refinado -->
+    <div class="text-side">
+        <div class="vehicle-badge">Heritage · JDM icon</div>
+        <h1>
+            TOYOTA SUPRA<br>
+            <span class="model-code">MK4 · A80</span>
+        </h1>
+        <div class="tagline">Straight-six legacy · Twin-turbo engineering · Timeless silhouette</div>
+        
+        <div class="specs-panel">
+            <h3>Powertrain & Chassis</h3>
+            <div class="spec-grid">
+                <div class="spec-item">
+                    <span class="spec-label">Engine</span>
+                    <span class="spec-value">3.0L 2JZ-GTE Twin Turbo</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Output</span>
+                    <span class="spec-value">326 hp / 427 Nm</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Drivetrain</span>
+                    <span class="spec-value">RWD · Torsen LSD</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Transmission</span>
+                    <span class="spec-value">6MT Getrag / 4AT</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">0-100 km/h</span>
+                    <span class="spec-value">4.9 sec (factory)</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Platform</span>
+                    <span class="spec-value">JZA80 · rigid chassis</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="highlight-text">
+            <strong>Engineering icon</strong> — The MK4 Supra defined an era. With forged internals and limitless tuning potential, the 2JZ-GTE remains a benchmark in automotive performance. Cult status amplified by motorsport legacy.
+        </div>
+        
+        <div class="instruction-note">
+            <strong>interactive exploration</strong> — click on the metallic markers on the right image to reveal high‑resolution details: front clip, wheels, door panel, rear section.<br>
+            <strong>advanced layer</strong> — activating the front section reveals an extra engine compartment marker.
+        </div>
+    </div>
+
+    <!-- COLUMNA DERECHA: IMAGEN PRINCIPAL + HOTSPOTS con alto uniforme -->
+    <div class="image-side">
+        <div class="image-header">
+            <h2>explore the silhouette</h2>
+        </div>
+
+        <div class="image-wrapper" id="imageWrapper">
+            <!-- Imagen dinámica: todas las imágenes compartirán el mismo contenedor con altura fija -->
+            <img src="src/lado.jpg" 
+                 alt="Toyota Supra MK4 lateral view" 
+                 id="main-car-image" 
+                 class="fixed-size-img">
+            
+            <!-- Contenedor hotspots principales -->
+            <div class="custom-hotspots" id="hotspotsContainer"></div>
+            <!-- Contenedor exclusivo para el círculo extra del capó (avanzado) -->
+            <div class="custom-hotspots" id="extraHotspotContainer" style="pointer-events: none; z-index: 25;"></div>
+        </div>
+
+        <div class="reset-btn-container" id="reset-area" style="display: none;">
+            <button class="btn-reset" id="resetButton">← return to exterior view</button>
+        </div>
+        <div class="footer-meta">
+            interactive markers · precision detail · uniform image height
+            <p></p>
+            Propiedad de Exequiel Sanhueza, Uso Exclusivo y demostrativo
+        </div>
+    </div>
+</div>
+
+<script>
+    // --------------------------------------------------------------
+    // ASSET CONFIGURATION: todas las imágenes respetarán alto fijo gracias al CSS
+    // --------------------------------------------------------------
+    const ASSETS = {
+        default: "src/lado.jpg",
+        frontView: "src/capo.jpg",
+        frontWheel: "src/rueda.jpg",
+        rearWheel: "src/freno.jpg",
+        doorInterior: "src/interior.jpg",
+        rearSection: "src/maletero.jpg",
+        // Extra engine bay image (advanced layer)
+        engineDetail: "src/motor.jpg"
+    };
+    
+    // Coordinates (percentage) for each interactive hotspot on the lateral view
+    const HOTSPOTS_DATA = [
+        { id: "front", label: "", name: "Front clip / Hood", left: "12%", top: "47%", actionKey: "frontView" },
+        { id: "frontWheel", label: "", name: "Front wheel & brake", left: "25%", top: "76%", actionKey: "frontWheel" },
+        { id: "rearWheel", label: "", name: "Rear wheel / drivetrain", left: "70%", top: "76%", actionKey: "rearWheel" },
+        { id: "door", label: "", name: "Door / cockpit", left: "47%", top: "60%", actionKey: "doorInterior" },
+        { id: "tail", label: "", name: "Rear trunk & lighting", left: "88%", top: "48%", actionKey: "rearSection" }
+    ];
+    
+    // DOM elements
+    const mainImage = document.getElementById('main-car-image');
+    const resetContainer = document.getElementById('reset-area');
+    const hotspotsContainer = document.getElementById('hotspotsContainer');
+    const extraContainer = document.getElementById('extraHotspotContainer');
+    
+    let currentState = "default";     // 'default' , 'detail', 'extraDetail'
+    let extraCircleExists = false;
+    let currentDetailImg = "";
+    
+    // Build main interactive markers (minimalist circles)
+    function buildHotspots() {
+        hotspotsContainer.innerHTML = '';
+        HOTSPOTS_DATA.forEach(spot => {
+            const circle = document.createElement('div');
+            circle.className = 'hotspot-circle';
+            circle.setAttribute('data-action', spot.actionKey);
+            circle.style.left = spot.left;
+            circle.style.top = spot.top;
+            circle.title = `View: ${spot.name}`;
+            // Eliminamos cualquier contenido extra para mantener el pseudo-elemento "●"
+            circle.innerHTML = '';
+            circle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (hotspotsContainer.style.display !== 'none') {
+                    triggerImageView(spot.actionKey);
+                }
+            });
+            hotspotsContainer.appendChild(circle);
+        });
+    }
+    
+    // Create the extra "engine bay" circle that appears after selecting front view
+    function createAdvancedHoodMarker() {
+        extraContainer.innerHTML = '';
+        extraContainer.style.pointerEvents = "auto";
+        extraContainer.style.display = 'block';
+        
+        const extraCircle = document.createElement('div');
+        extraCircle.className = 'hotspot-circle';
+        // Positioned over the engine bay region (front view image)
+        extraCircle.style.left = "52%";
+        extraCircle.style.top = "42%";
+        extraCircle.title = "Engine bay · 2JZ-GTE";
+        extraCircle.style.background = "rgba(180, 140, 80, 0.9)";
+        extraCircle.style.boxShadow = "0 0 0 1px #E8C48A, 0 0 0 3px rgba(197,165,114,0.4)";
+        extraCircle.style.backdropFilter = "blur(2px)";
+        
+        // Personalizamos el contenido para que se vea un ícono de motor sutil
+        extraCircle.innerHTML = '';
+        // Aseguramos que el pseudo-elemento muestre un símbolo distintivo
+        const style = document.createElement('style');
+        if (!document.querySelector('#extraCircleStyle')) {
+            style.id = 'extraCircleStyle';
+            style.textContent = `.hotspot-circle[data-engine="true"]::before { content: ""; font-size: 18px; }`;
+            document.head.appendChild(style);
+        }
+        extraCircle.setAttribute('data-engine', 'true');
+        
+        extraCircle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (!ASSETS.engineDetail) return;
+            // Show the high-res engine image
+            mainImage.src = ASSETS.engineDetail;
+            // Hide extra circle and main hotspots while detail is active
+            extraContainer.style.display = 'none';
+            hotspotsContainer.style.display = 'none';
+            resetContainer.style.display = 'block';
+            currentState = "extraDetail";
+            currentDetailImg = ASSETS.engineDetail;
+            mainImage.style.opacity = '0.98';
+            setTimeout(() => { mainImage.style.opacity = '1'; }, 60);
+        });
+        
+        extraContainer.appendChild(extraCircle);
+        extraCircleExists = true;
+        extraContainer.style.display = 'block';
+    }
+    
+    // Core function to change the main image based on the selected marker
+    function triggerImageView(actionKey) {
+        let targetImage = "";
+        let isFrontSelection = false;
+        
+        switch(actionKey) {
+            case "frontView":
+                targetImage = ASSETS.frontView;
+                isFrontSelection = true;
+                break;
+            case "frontWheel":
+                targetImage = ASSETS.frontWheel;
+                break;
+            case "rearWheel":
+                targetImage = ASSETS.rearWheel;
+                break;
+            case "doorInterior":
+                targetImage = ASSETS.doorInterior;
+                break;
+            case "rearSection":
+                targetImage = ASSETS.rearSection;
+                break;
+            default:
+                targetImage = ASSETS.default;
+        }
+        
+        if (!targetImage) return;
+        
+        // Aplicar cambio de imagen - todas las imágenes se muestran en el mismo contenedor de alto fijo
+        mainImage.src = targetImage;
+        // Hide the main hotspots while detail view is active
+        hotspotsContainer.style.display = 'none';
+        // Remove any leftover extra circle from previous interactions
+        extraContainer.innerHTML = '';
+        extraContainer.style.display = 'none';
+        extraCircleExists = false;
+        
+        // Show reset button
+        resetContainer.style.display = 'block';
+        currentState = "detail";
+        currentDetailImg = targetImage;
+        
+        // If the user selected "front view" and we have engine detail asset, add advanced marker
+        if (isFrontSelection && ASSETS.engineDetail) {
+            createAdvancedHoodMarker();
+        } else {
+            // ensure extra container is cleared
+            extraContainer.innerHTML = '';
+            extraContainer.style.display = 'none';
+            extraCircleExists = false;
+        }
+        
+        mainImage.style.opacity = '0.96';
+        setTimeout(() => { mainImage.style.opacity = '1'; }, 70);
+    }
+    
+    // Reset to default lateral view, restore all interactive hotspots
+    function resetToDefaultView() {
+        mainImage.src = ASSETS.default;
+        hotspotsContainer.style.display = 'block';
+        resetContainer.style.display = 'none';
+        // Clear extra container completely
+        extraContainer.innerHTML = '';
+        extraContainer.style.display = 'none';
+        extraContainer.style.pointerEvents = 'none';
+        extraCircleExists = false;
+        currentState = "default";
+        currentDetailImg = "";
+        mainImage.style.opacity = '1';
+        // reset pointer events
+        extraContainer.style.pointerEvents = "none";
+    }
+    
+    // Inicializar aplicación con verificación de altura uniforme
+    function initApplication() {
+        buildHotspots();
+        
+        // Configurar imagen inicial - Todas las imágenes comparten el mismo alto gracias al CSS .image-wrapper
+        mainImage.src = ASSETS.default;
+        mainImage.style.position = "absolute";
+        mainImage.style.top = "0";
+        mainImage.style.left = "0";
+        mainImage.style.width = "100%";
+        mainImage.style.height = "100%";
+        mainImage.style.objectFit = "contain";
+        
+        // Reafirmar que el wrapper tenga altura fija (ya está en CSS, pero aseguramos consistencia)
+        const wrapper = document.querySelector('.image-wrapper');
+        if (wrapper) {
+            // La altura fija se define en CSS para garantizar uniformidad. No se usa aspect-ratio para evitar conflictos.
+            // Nos aseguramos de que no haya estilos inline que rompan la altura.
+            wrapper.style.height = window.innerWidth <= 550 ? '280px' : (window.innerWidth <= 850 ? '380px' : '460px');
+            window.addEventListener('resize', () => {
+                if (window.innerWidth <= 550) wrapper.style.height = '280px';
+                else if (window.innerWidth <= 850) wrapper.style.height = '380px';
+                else wrapper.style.height = '460px';
+            });
+        }
+        
+        resetContainer.style.display = 'none';
+        extraContainer.style.display = 'none';
+        extraContainer.style.pointerEvents = "none";
+        currentState = "default";
+        
+        // Graceful error handling: if any image fails to load, reset gracefully without breaking UI
+        mainImage.onerror = () => {
+            console.warn("Image load error, fallback to default view");
+            if (mainImage.src !== ASSETS.default && currentState !== "default") {
+                resetToDefaultView();
+            } else if (mainImage.src === ASSETS.engineDetail && currentState === "extraDetail") {
+                resetToDefaultView();
+            } else {
+                // if default also fails, keep placeholder but don't break
+                if (mainImage.src !== ASSETS.default) {
+                    mainImage.src = ASSETS.default;
+                    resetToDefaultView();
+                }
+            }
+        };
+        
+        // Add reset button listener
+        const resetBtn = document.getElementById('resetButton');
+        if (resetBtn) {
+            resetBtn.removeEventListener('click', resetToDefaultView);
+            resetBtn.addEventListener('click', resetToDefaultView);
+        }
+        
+        // Preload mechanism to avoid missing images (silent)
+        const preloadList = [ASSETS.default, ASSETS.frontView, ASSETS.frontWheel, ASSETS.rearWheel, ASSETS.doorInterior, ASSETS.rearSection, ASSETS.engineDetail];
+        preloadList.forEach(src => {
+            if (src) {
+                const imgPre = new Image();
+                imgPre.src = src;
+            }
+        });
+        
+        // Mensaje de confirmación: todas las imágenes tendrán el mismo alto fijo dinámico.
+        console.log("✅ Imágenes con altura uniforme: contenedor .image-wrapper altura fija = 460px (responsive 380/280). Todas las imágenes mantienen mismo alto y ancho máximo controlado.");
+    }
+    
+    initApplication();
+</script>
+</body>
+</html>
