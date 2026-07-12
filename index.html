@@ -1,633 +1,539 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Exequiel Sanhueza - Ingeniero Civil Informático especializado en Inteligencia Artificial y Sistemas. Proyectos de IA, automatización y análisis de datos.">
-  <title>Exequiel Sanhueza | Ingeniería en IA y Sistemas</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Benjamín Sanhueza — Ingeniero Civil Informático. Desarrollo Full Stack, DevOps, redes e infraestructura para empresas.">
+<title>Benjamín Sanhueza | Ingeniería Informática</title>
 
-  <!-- Google Fonts + Font Awesome -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<style>
+  :root{
+    --ink:#12181a;
+    --ink-soft:#57635f;
+    --paper:#ffffff;
+    --surface-alt:#f4f6f5;
+    --line:#e1e6e3;
+    --primary:#0e6b4f;
+    --primary-dark:#0a4d39;
+    --primary-tint:#e7f3ee;
+    --gold:#c9932e;
+    --gold-tint:#faf1de;
+    --term-bg:#0d1411;
+    --term-line:rgba(61,220,132,0.14);
+    --term-green:#3ddc84;
+    --term-text:#c9d6d0;
+    --radius:16px;
+    --shadow:0 22px 46px -20px rgba(18,24,26,0.18);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', sans-serif; background:var(--paper); color:var(--ink);
+    line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .display{font-family:'Manrope', sans-serif;}
+  .mono{font-family:'JetBrains Mono', monospace;}
+  a{color:inherit;}
+  img{display:block; max-width:100%;}
+  :focus-visible{outline:2.5px solid var(--primary); outline-offset:3px;}
 
-    :root {
-      --blanco: #ffffff;
-      --negro: #0a0a0a;
-      --gris-oscuro: #111111;
-      --gris-medio: #6c6c6c;
-      --gris-claro: #f5f5f7;
-      --acento: #0066ff;
-      --acento-hover: #0050cc;
-      --border-light: #eaeef2;
-      --shadow-sm: 0 8px 20px rgba(0,0,0,0.03), 0 2px 4px rgba(0,0,0,0.05);
-      --shadow-md: 0 20px 35px -12px rgba(0,0,0,0.08);
-    }
+  .eyebrow{
+    font-family:'JetBrains Mono'; font-size:12px; font-weight:600; letter-spacing:0.08em;
+    color:var(--primary); text-transform:uppercase; display:inline-flex; align-items:center; gap:8px; margin-bottom:16px;
+  }
+  .eyebrow::before{content:""; width:22px; height:1.5px; background:var(--primary);}
+  .rule{height:1px; background:var(--line); width:100%;}
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--blanco);
-      color: var(--gris-oscuro);
-      line-height: 1.5;
-      scroll-behavior: smooth;
-    }
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky; top:0; z-index:100; background:rgba(255,255,255,0.92); backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .header-inner{
+    max-width:1240px; margin:0 auto; padding:1rem 2.4rem; display:flex; justify-content:space-between; align-items:center;
+  }
+  .brand{display:flex; align-items:center; gap:11px;}
+  .brand-mark{
+    width:38px; height:38px; border-radius:9px; background:var(--primary-dark); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-family:'Manrope'; font-weight:800; font-size:14px; flex-shrink:0;
+  }
+  .brand-text{font-family:'Manrope'; font-weight:800; font-size:1.05rem; letter-spacing:-0.01em; line-height:1.2;}
+  .brand-text span{display:block; font-family:'JetBrains Mono'; font-weight:500; font-size:10.5px; color:var(--ink-soft); letter-spacing:0.05em; margin-top:2px;}
+  nav{display:flex; align-items:center; gap:2rem;}
+  nav a{text-decoration:none; font-weight:600; color:var(--ink-soft); font-size:0.9rem; transition:color .15s;}
+  nav a:hover{color:var(--ink);}
+  .nav-cta{background:var(--primary); color:#fff !important; padding:0.6rem 1.25rem; border-radius:8px; font-size:0.86rem;}
+  .nav-cta:hover{background:var(--primary-dark);}
 
-    /* Header */
-    header {
-      position: sticky;
-      top: 0;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(12px);
-      z-index: 100;
-      padding: 1rem 3rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid rgba(0,0,0,0.05);
-    }
+  /* ---------- HERO ---------- */
+  .hero{background:var(--paper); position:relative; overflow:hidden;}
+  .hero-inner{
+    max-width:1240px; margin:0 auto; padding:5.4rem 2.4rem 5rem; display:grid;
+    grid-template-columns:1.05fr 0.95fr; gap:3.4rem; align-items:center;
+  }
+  .hero h1{
+    font-family:'Manrope'; font-weight:800; font-size:clamp(2.3rem,4.2vw,3.3rem); letter-spacing:-0.02em;
+    line-height:1.1; margin-bottom:1.2rem; color:var(--ink);
+  }
+  .hero h1 em{font-style:normal; color:var(--primary);}
+  .hero p{font-size:1.06rem; color:var(--ink-soft); max-width:520px; margin-bottom:2rem;}
+  .btn-group{display:flex; flex-wrap:wrap; gap:1rem; margin-bottom:2.2rem;}
+  .btn{
+    display:inline-flex; align-items:center; gap:0.6rem; padding:0.9rem 1.7rem; font-weight:700;
+    border-radius:9px; font-size:0.92rem; transition:all .2s ease; cursor:pointer; border:none;
+    text-decoration:none; font-family:'Inter';
+  }
+  .btn-primary{background:var(--primary); color:#fff; box-shadow:0 12px 24px -10px rgba(14,107,79,0.45);}
+  .btn-primary:hover{background:var(--primary-dark); transform:translateY(-2px);}
+  .btn-outline{background:transparent; border:1.5px solid var(--line); color:var(--ink);}
+  .btn-outline:hover{border-color:var(--primary); color:var(--primary); transform:translateY(-2px);}
+  .trust-row{display:flex; align-items:center; gap:10px; font-size:0.85rem; color:var(--ink-soft);}
+  .trust-row .dot{width:8px; height:8px; border-radius:50%; background:var(--term-green); box-shadow:0 0 0 3px rgba(61,220,132,0.18);}
 
-    .logo {
-      font-weight: 700;
-      font-size: 1.35rem;
-      letter-spacing: -0.3px;
-      background: linear-gradient(135deg, #111 0%, #2d2d2d 100%);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-    }
+  /* terminal mockup */
+  .terminal{
+    background:var(--term-bg); border-radius:14px; overflow:hidden; box-shadow:var(--shadow);
+    border:1px solid rgba(61,220,132,0.18);
+  }
+  .terminal-bar{
+    display:flex; align-items:center; gap:7px; padding:12px 14px; border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+  .terminal-bar span{width:10px; height:10px; border-radius:50%; background:#3a4440;}
+  .terminal-bar .label{margin-left:8px; font-family:'JetBrains Mono'; font-size:11px; color:#5f6d67;}
+  .terminal-body{padding:20px 20px 24px; font-family:'JetBrains Mono'; font-size:12.5px; line-height:1.9; color:var(--term-text);}
+  .terminal-body .prompt{color:var(--term-green);}
+  .terminal-body .cmd{color:#eef3f0;}
+  .terminal-body .ok{color:var(--term-green);}
+  .terminal-body .muted{color:#5f6d67;}
+  .cursor{display:inline-block; width:7px; height:13px; background:var(--term-green); margin-left:2px; animation:blink 1s step-end infinite; vertical-align:middle;}
+  @keyframes blink{50%{opacity:0;}}
 
-    nav {
-      display: flex;
-      gap: 2rem;
-    }
+  /* ---------- STATS ---------- */
+  .stats-bar{background:var(--primary-dark); color:#fff;}
+  .stats-inner{
+    max-width:1240px; margin:0 auto; padding:2.6rem 2.4rem; display:grid;
+    grid-template-columns:repeat(4,1fr); gap:1.5rem; text-align:center;
+  }
+  .stat .n{font-family:'Manrope'; font-weight:800; font-size:2.1rem; color:#fff;}
+  .stat .l{font-family:'JetBrains Mono'; font-size:11.5px; color:rgba(255,255,255,0.6); letter-spacing:0.04em; margin-top:4px; text-transform:uppercase;}
+  @media(max-width:760px){ .stats-inner{grid-template-columns:repeat(2,1fr);} }
 
-    nav a {
-      text-decoration: none;
-      font-weight: 500;
-      color: var(--gris-oscuro);
-      transition: 0.2s;
-      font-size: 0.95rem;
-    }
+  /* ---------- MAIN / SECTIONS ---------- */
+  main{max-width:1240px; margin:0 auto; padding:0 2.4rem;}
+  .section{padding:5.4rem 0;}
+  .section.alt{background:var(--surface-alt); margin:0 -2.4rem; padding:5.4rem 2.4rem; width:calc(100% + 4.8rem);}
+  .section-head{max-width:680px; margin-bottom:2.8rem;}
+  h2{font-family:'Manrope'; font-weight:800; font-size:clamp(1.85rem,2.6vw,2.4rem); letter-spacing:-0.015em; margin-bottom:0.9rem;}
+  .section-desc{font-size:1.02rem; color:var(--ink-soft); max-width:680px;}
 
-    nav a:hover {
-      color: var(--acento);
-    }
+  /* ---------- SERVICES ---------- */
+  .service-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem;}
+  .service-card{
+    background:var(--paper); border:1px solid var(--line); border-radius:var(--radius);
+    padding:2rem 1.8rem; transition:all .22s cubic-bezier(.2,0,0,1);
+  }
+  .service-card:hover{transform:translateY(-5px); box-shadow:var(--shadow); border-color:#cddbd4;}
+  .service-icon{
+    width:46px; height:46px; border-radius:11px; background:var(--primary-tint); color:var(--primary-dark);
+    display:flex; align-items:center; justify-content:center; font-size:1.15rem; margin-bottom:1.2rem;
+  }
+  .service-card h3{font-family:'Manrope'; font-size:1.15rem; font-weight:700; margin-bottom:0.6rem;}
+  .service-card p{color:var(--ink-soft); font-size:0.93rem; margin-bottom:1rem;}
+  .service-card ul{list-style:none;}
+  .service-card ul li{
+    font-size:0.85rem; color:var(--ink-soft); display:flex; align-items:center; gap:8px; margin-bottom:6px;
+  }
+  .service-card ul li::before{content:"✓"; color:var(--primary); font-weight:700; font-size:0.8rem;}
 
-    /* Hero */
-    .hero {
-      width: 100vw;
-      min-height: 88vh;
-      margin-left: calc(-50vw + 50%);
-      background-image: linear-gradient(105deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.4) 100%), url("src/fondo.jpg");
-      background-size: cover;
-      background-position: center 30%;
-      background-repeat: no-repeat;
-      display: flex;
-      align-items: center;
-    }
+  /* ---------- TIMELINE ---------- */
+  .timeline{border-left:2px solid var(--line); margin-left:8px; padding-left:32px; display:flex; flex-direction:column; gap:2.4rem;}
+  .timeline-item{position:relative;}
+  .timeline-item::before{
+    content:""; position:absolute; left:-40px; top:4px; width:14px; height:14px; border-radius:50%;
+    background:var(--primary); border:3px solid var(--primary-tint);
+  }
+  .timeline-date{font-family:'JetBrains Mono'; font-size:11.5px; font-weight:600; color:var(--primary); letter-spacing:0.03em; text-transform:uppercase; margin-bottom:6px;}
+  .timeline-item h3{font-family:'Manrope'; font-size:1.15rem; font-weight:700; margin-bottom:2px;}
+  .timeline-item .org{font-size:0.92rem; color:var(--ink-soft); font-weight:600; margin-bottom:10px;}
+  .timeline-item ul{list-style:none; display:flex; flex-direction:column; gap:6px;}
+  .timeline-item ul li{font-size:0.92rem; color:var(--ink-soft); display:flex; gap:9px;}
+  .timeline-item ul li::before{content:"—"; color:var(--gold); flex-shrink:0;}
 
-    .hero-content {
-      max-width: 1300px;
-      margin: 0 auto;
-      padding: 0 3rem;
-      color: white;
-    }
+  /* ---------- STACK ---------- */
+  .stack-group{margin-bottom:1.8rem;}
+  .stack-group h4{font-family:'JetBrains Mono'; font-size:11.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:12px;}
+  .stack-row{display:flex; flex-wrap:wrap; gap:9px;}
+  .stack-tag{
+    font-family:'JetBrains Mono'; font-size:12.5px; font-weight:600; padding:8px 14px; border-radius:999px;
+    border:1px solid var(--line); background:var(--paper); color:var(--ink);
+  }
 
-    .hero h1 {
-      font-size: clamp(2.8rem, 6vw, 4.2rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.2;
-      margin-bottom: 1rem;
-    }
+  /* ---------- EDUCATION / CERTS ---------- */
+  .edu-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1.5rem;}
+  .edu-card{
+    background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:1.9rem;
+    display:flex; gap:16px;
+  }
+  .edu-icon{
+    width:44px; height:44px; border-radius:10px; background:var(--primary-tint); color:var(--primary-dark);
+    display:flex; align-items:center; justify-content:center; font-size:1.05rem; flex-shrink:0;
+  }
+  .edu-card h3{font-family:'Manrope'; font-size:1.02rem; font-weight:700; margin-bottom:3px;}
+  .edu-card .period{font-family:'JetBrains Mono'; font-size:11.5px; color:var(--primary); margin-bottom:8px;}
+  .edu-card p{font-size:0.88rem; color:var(--ink-soft);}
 
-    .hero .subtitulo {
-      font-size: 1.3rem;
-      font-weight: 500;
-      color: rgba(255,255,255,0.85);
-      margin-bottom: 1.25rem;
-    }
+  .cert-card{
+    background:var(--gold-tint); border:1px solid #ecdcb4; border-radius:var(--radius); padding:1.9rem;
+    display:flex; gap:16px; align-items:flex-start;
+  }
+  .cert-icon{
+    width:44px; height:44px; border-radius:10px; background:var(--gold); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0;
+  }
+  .cert-card h3{font-family:'Manrope'; font-size:1.02rem; font-weight:700; margin-bottom:3px;}
+  .cert-card .period{font-family:'JetBrains Mono'; font-size:11.5px; color:#9c7220; margin-bottom:8px;}
+  .cert-card p{font-size:0.88rem; color:#6b5936;}
 
-    .hero p {
-      font-size: 1.1rem;
-      max-width: 620px;
-      margin-bottom: 2.2rem;
-      color: rgba(255,255,255,0.9);
-    }
+  /* ---------- PROJECTS ---------- */
+  .demo-showcase{
+    background:var(--ink); border-radius:20px; padding:2.6rem 2.2rem; color:#fff; margin-top:1rem;
+  }
+  .demo-showcase .eyebrow{color:var(--term-green);}
+  .demo-showcase .eyebrow::before{background:var(--term-green);}
+  .demo-showcase h3{font-family:'Manrope'; font-size:1.55rem; font-weight:800; margin-bottom:0.5rem;}
+  .demo-showcase > p{color:rgba(255,255,255,0.62); font-size:0.96rem; max-width:520px; margin-bottom:2rem;}
+  .demo-cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:1.2rem;}
+  .demo-card-item{
+    background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); border-radius:14px; padding:1.5rem 1.3rem;
+    transition:all .2s ease;
+  }
+  .demo-card-item:hover{background:rgba(255,255,255,0.09); border-color:var(--term-green); transform:translateY(-4px);}
+  .demo-icon{
+    width:42px; height:42px; border-radius:10px; background:rgba(61,220,132,0.15); color:var(--term-green);
+    display:flex; align-items:center; justify-content:center; font-size:1.05rem; margin-bottom:0.9rem;
+  }
+  .demo-card-item h4{font-family:'Manrope'; font-size:1.02rem; font-weight:700; margin-bottom:0.4rem;}
+  .demo-card-item p{font-size:0.83rem; color:rgba(255,255,255,0.58); margin-bottom:1.1rem; min-height:38px;}
+  .demo-link{
+    display:inline-flex; align-items:center; gap:7px; font-family:'JetBrains Mono'; font-weight:600;
+    text-decoration:none; color:var(--term-green); font-size:0.8rem; padding:0.5rem 0.85rem; border-radius:7px;
+    border:1px solid rgba(61,220,132,0.4); transition:.2s;
+  }
+  .demo-link:hover{background:var(--term-green); color:var(--ink);}
 
-    .btn-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
+  /* ---------- CONTACT ---------- */
+  .contact-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:3rem; align-items:center;}
+  .contact-info p.lead{color:var(--ink-soft); font-size:1.02rem; margin-bottom:1.6rem; max-width:480px;}
+  .contact-list{display:flex; flex-direction:column; gap:12px; margin-bottom:1.8rem;}
+  .contact-list a, .contact-list span{
+    display:flex; align-items:center; gap:12px; font-size:0.96rem; text-decoration:none; color:var(--ink);
+  }
+  .contact-list i{
+    width:36px; height:36px; border-radius:9px; background:var(--primary-tint); color:var(--primary-dark);
+    display:flex; align-items:center; justify-content:center; font-size:0.95rem; flex-shrink:0;
+  }
+  .contact-list a:hover{color:var(--primary);}
+  .contact-btns{display:flex; flex-wrap:wrap; gap:0.9rem;}
+  .btn-wtsp, .btn-mail{
+    border:none; padding:0.9rem 1.7rem; border-radius:9px; font-weight:700; font-size:0.9rem;
+    cursor:pointer; transition:.2s; display:inline-flex; align-items:center; gap:10px; width:fit-content; font-family:'Inter';
+  }
+  .btn-wtsp{background:#1fae6a; color:#fff;}
+  .btn-wtsp:hover{background:#178a54; transform:translateY(-2px);}
+  .btn-mail{background:var(--ink); color:#fff;}
+  .btn-mail:hover{background:var(--primary-dark); transform:translateY(-2px);}
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.85rem 1.9rem;
-      font-weight: 600;
-      border-radius: 40px;
-      font-size: 0.95rem;
-      transition: all 0.25s ease;
-      cursor: pointer;
-      border: none;
-      background: var(--acento);
-      color: white;
-      text-decoration: none;
-    }
+  .contact-card{
+    background:var(--surface-alt); border:1px solid var(--line); border-radius:var(--radius); padding:2.2rem;
+  }
+  .contact-card .avail{
+    display:flex; align-items:center; gap:9px; font-family:'JetBrains Mono'; font-size:12px; color:var(--primary);
+    margin-bottom:1.2rem; font-weight:600;
+  }
+  .contact-card .avail .dot{width:8px; height:8px; border-radius:50%; background:var(--primary); box-shadow:0 0 0 3px var(--primary-tint);}
+  .contact-card h3{font-family:'Manrope'; font-size:1.15rem; font-weight:700; margin-bottom:10px;}
+  .contact-card p{font-size:0.9rem; color:var(--ink-soft); line-height:1.6;}
 
-    .btn-primary {
-      background: var(--acento);
-      box-shadow: 0 4px 12px rgba(0,102,255,0.3);
-    }
+  footer{
+    text-align:center; padding:2.4rem 2rem; font-size:0.84rem; color:var(--ink-soft);
+    border-top:1px solid var(--line); margin-top:2rem; background:var(--paper); font-family:'JetBrains Mono';
+  }
 
-    .btn-primary:hover {
-      background: var(--acento-hover);
-      transform: translateY(-2px);
-    }
-
-    .btn-outline {
-      background: transparent;
-      border: 1.5px solid white;
-      color: white;
-    }
-
-    .btn-outline:hover {
-      background: rgba(255,255,255,0.1);
-      transform: translateY(-2px);
-    }
-
-    main {
-      max-width: 1300px;
-      margin: 0 auto;
-      padding: 0 3rem;
-    }
-
-    .section {
-      padding: 5rem 0;
-      border-bottom: 1px solid var(--border-light);
-    }
-
-    .section:last-of-type {
-      border-bottom: none;
-    }
-
-    h2 {
-      font-size: 2.3rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 1rem;
-    }
-
-    .section-desc {
-      font-size: 1.05rem;
-      color: var(--gris-medio);
-      max-width: 720px;
-      margin-bottom: 2.5rem;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-top: 1rem;
-    }
-
-    .card {
-      background: var(--blanco);
-      padding: 2rem 1.8rem;
-      border-radius: 24px;
-      border: 1px solid var(--border-light);
-      transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-md);
-      border-color: #cfddee;
-    }
-
-    .card-icon {
-      font-size: 2.2rem;
-      color: var(--acento);
-      margin-bottom: 1.2rem;
-    }
-
-    .card h3 {
-      font-size: 1.35rem;
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-    }
-
-    .card p {
-      color: var(--gris-medio);
-      line-height: 1.5;
-    }
-
-    /* Demo Showcase - Mejorado */
-    .demo-showcase {
-      background: linear-gradient(135deg, #f8faff 0%, #f0f4fe 100%);
-      border-radius: 32px;
-      padding: 2.5rem;
-      margin: 2.5rem 0 2rem 0;
-      border: 1px solid rgba(0,102,255,0.15);
-    }
-
-    .demo-header {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .demo-header h3 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #111, #2c3e66);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      margin-bottom: 0.5rem;
-    }
-
-    .demo-header p {
-      color: var(--gris-medio);
-      font-size: 1rem;
-    }
-
-    .demo-header i {
-      color: var(--acento);
-      margin-right: 6px;
-    }
-
-    .demo-cards {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: center;
-    }
-
-    .demo-card-item {
-      background: white;
-      border-radius: 28px;
-      padding: 1.8rem;
-      flex: 1;
-      min-width: 240px;
-      max-width: 300px;
-      text-align: center;
-      transition: all 0.3s ease;
-      border: 1px solid #e9edf4;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.03);
-    }
-
-    .demo-card-item:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 25px 35px -12px rgba(0,102,255,0.2);
-      border-color: var(--acento);
-    }
-
-    .demo-icon {
-      font-size: 2.8rem;
-      background: #eef3ff;
-      width: 70px;
-      height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 60px;
-      margin: 0 auto 1.2rem;
-      color: var(--acento);
-    }
-
-    .demo-card-item h4 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-
-    .demo-card-item p {
-      font-size: 0.85rem;
-      color: #5a6874;
-      margin-bottom: 1.2rem;
-    }
-
-    .demo-card-item .demo-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: transparent;
-      color: var(--acento);
-      font-weight: 600;
-      text-decoration: none;
-      padding: 0.5rem 1rem;
-      border-radius: 40px;
-      transition: 0.2s;
-      font-size: 0.9rem;
-    }
-
-    .demo-card-item .demo-link:hover {
-      background: var(--acento);
-      color: white;
-      gap: 12px;
-    }
-
-    /* Contacto */
-    .contacto-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.9fr;
-      align-items: center;
-      gap: 3rem;
-    }
-
-    .contacto-info {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .contacto-info p {
-      font-size: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      color: #2c2c2c;
-    }
-
-    .contacto-info i {
-      width: 28px;
-      color: var(--acento);
-      font-size: 1.2rem;
-    }
-
-    .contacto-info a {
-      color: var(--gris-oscuro);
-      text-decoration: none;
-      border-bottom: 1px dotted var(--gris-medio);
-      transition: 0.2s;
-    }
-
-    .contacto-info a:hover {
-      color: var(--acento);
-      border-bottom-color: var(--acento);
-    }
-
-    /* Botón WhatsApp */
-    .whatsapp-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #25D366;
-      color: white !important;
-      padding: 0.5rem 1rem;
-      border-radius: 40px;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.85rem;
-      border-bottom: none !important;
-      transition: 0.2s;
-    }
-
-    .whatsapp-link:hover {
-      background: #128C7E;
-      transform: scale(1.02);
-      color: white !important;
-    }
-
-    .btn-wtsp {
-      background:  #25D366;
-      color: white;
-      border: none;
-      padding: 0.85rem 1.8rem;
-      border-radius: 40px;
-      font-weight: 500;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: 0.2s;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      width: fit-content;
-    }
-
-    .btn-wtsp:hover {
-      background: rgb(165, 255, 186);
-      color: #128C7E;
-      transform: translateY(-2px);
-    }
-
-    .btn-mail {
-      background: var(--gris-oscuro);
-      color: white;
-      border: none;
-      padding: 0.85rem 1.8rem;
-      border-radius: 40px;
-      font-weight: 500;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: 0.2s;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      width: fit-content;
-    }
-
-    .btn-mail:hover {
-      background: var(--acento);
-      transform: translateY(-2px);
-    }
-
-    .contacto-foto img {
-      width: 100%;
-      max-width: 320px;
-      border-radius: 32px;
-      box-shadow: 0 30px 45px -20px rgba(0,0,0,0.2);
-      object-fit: cover;
-      aspect-ratio: 1 / 1;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2.5rem 2rem;
-      font-size: 0.85rem;
-      color: var(--gris-medio);
-      border-top: 1px solid var(--border-light);
-      margin-top: 3rem;
-      background: #fafafc;
-    }
-
-    @media (max-width: 900px) {
-      header { padding: 1rem 1.5rem; }
-      main { padding: 0 1.5rem; }
-      .contacto-grid { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
-      .contacto-info p { justify-content: center; }
-      .btn-mail { margin: 0 auto; }
-      .contacto-foto img { margin: 0 auto; max-width: 260px; }
-      .demo-showcase { padding: 1.8rem; }
-    }
-
-    @media (max-width: 768px) {
-      .hero { min-height: 70vh; }
-      .hero-content { padding: 0 1.5rem; }
-      h2 { font-size: 1.9rem; }
-      .section { padding: 3.5rem 0; }
-      nav { gap: 1rem; }
-    }
-  </style>
+  @media (max-width:960px){
+    .hero-inner{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;}
+  }
+  @media (max-width:760px){
+    .header-inner{padding:1rem 1.4rem;}
+    nav a:not(.nav-cta){display:none;}
+    main{padding:0 1.4rem;}
+    .section.alt{margin:0 -1.4rem; padding:4rem 1.4rem; width:calc(100% + 2.8rem);}
+    .hero-inner{padding:3.6rem 1.4rem 3rem;}
+    .section{padding:3.6rem 0;}
+  }
+  @media (prefers-reduced-motion:reduce){ *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;} }
+</style>
 </head>
 <body>
 
 <header>
-  <div class="logo">Exequiel Sanhueza <span style="font-weight: 400;">· IA & Systems</span></div>
-  <nav>
-    <a href="#especializacion">Especialización</a>
-    <a href="#proyectos">Proyectos</a>
-    <a href="#contacto">Contacto</a>
-  </nav>
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-mark">BS</div>
+      <div class="brand-text">Benjamín Sanhueza<span>INGENIERÍA INFORMÁTICA</span></div>
+    </div>
+    <nav>
+      <a href="#servicios">Servicios</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#formacion">Formación</a>
+      <a href="#contacto" class="nav-cta">Contactar</a>
+    </nav>
+  </div>
 </header>
 
-<!-- Hero -->
 <section class="hero">
-  <div class="hero-content">
-    <h1>Ingeniería <br>Inteligencia Artificial</h1>
-    <div class="subtitulo">Exequiel Sanhueza Rain · Civil Informático</div>
-    <p>
-      Arquitecto de soluciones basadas en datos, modelos predictivos y automatización.
-      Convierto problemas complejos en sistemas inteligentes con impacto real.
-    </p>
-    <div class="btn-group">
-      <button class="btn btn-primary" onclick="location.href='#proyectos'">
-        <i class="fas fa-arrow-right"></i> Explorar proyectos
-      </button>
-      <button class="btn btn-outline" onclick="location.href='#contacto'">
-        <i class="fas fa-comment"></i> Conversemos
-      </button>
+  <div class="hero-inner">
+    <div>
+      <span class="eyebrow">Ingeniero Civil Informático</span>
+      <h1>Software e infraestructura que <em>tu empresa</em> puede sostener</h1>
+      <p>Desarrollo Full Stack, DevOps y redes para negocios que necesitan sistemas estables, seguros y fáciles de mantener — desde la base de datos hasta el despliegue en producción.</p>
+      <div class="btn-group">
+        <a href="#servicios" class="btn btn-primary"><i class="fas fa-arrow-right"></i> Ver servicios</a>
+        <a href="#contacto" class="btn btn-outline"><i class="fas fa-comment"></i> Conversemos</a>
+      </div>
+      <div class="trust-row"><span class="dot"></span> Disponible para proyectos y prácticas profesionales</div>
+    </div>
+
+    <div class="terminal">
+      <div class="terminal-bar"><span></span><span></span><span></span><span class="label">deploy.sh — kubectl</span></div>
+      <div class="terminal-body">
+        <div><span class="prompt">$</span> <span class="cmd">kubectl get pods -n produccion</span></div>
+        <div class="muted">NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STATUS&nbsp;&nbsp;&nbsp;&nbsp;RESTARTS</div>
+        <div>api-backend-7f9c&nbsp;&nbsp;<span class="ok">Running</span>&nbsp;&nbsp;&nbsp;0</div>
+        <div>web-frontend-2a1&nbsp;&nbsp;<span class="ok">Running</span>&nbsp;&nbsp;&nbsp;0</div>
+        <div>postgres-db-001&nbsp;&nbsp;&nbsp;<span class="ok">Running</span>&nbsp;&nbsp;&nbsp;0</div>
+        <div style="margin-top:10px;"><span class="prompt">$</span> <span class="cmd">docker compose up -d --build</span></div>
+        <div class="muted">Construyendo imágenes...</div>
+        <div><span class="ok">✓</span> Servicios desplegados correctamente</div>
+        <div style="margin-top:10px;"><span class="prompt">$</span> <span class="cursor"></span></div>
+      </div>
     </div>
   </div>
 </section>
 
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat"><div class="n">5+</div><div class="l">Años en formación TI</div></div>
+    <div class="stat"><div class="n">15+</div><div class="l">Tecnologías dominadas</div></div>
+    <div class="stat"><div class="n">4</div><div class="l">Proyectos demostrables</div></div>
+    <div class="stat"><div class="n">1</div><div class="l">Solucion de alta disponibilidad</div></div>
+  </div>
+</div>
+
 <main>
-  <!-- Especialización -->
-  <section id="especializacion" class="section">
-    <h2>Especialización</h2>
-    <p class="section-desc">
-      Integración de inteligencia artificial con infraestructura crítica, automatización inteligente y arquitectura de datos de alto rendimiento.
-    </p>
-    <div class="grid-3">
-      <div class="card">
-        <div class="card-icon"><i class="fas fa-brain"></i></div>
-        <h3>Machine Learning & Data</h3>
-        <p>Modelos predictivos, clustering, sistemas de recomendación y pipelines ETL optimizados para entornos productivos.</p>
+  <section id="servicios" class="section">
+    <div class="section-head">
+      <span class="eyebrow">Qué ofrezco</span>
+      <h2>Servicios de ingeniería</h2>
+      <p class="section-desc">Desde la interfaz que ve el usuario hasta el servidor donde corre — cubro el ciclo completo de un sistema informático para empresas.</p>
+    </div>
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-code"></i></div>
+        <h3>Desarrollo Full Stack</h3>
+        <p>Aplicaciones web a medida, del frontend al backend.</p>
+        <ul>
+          <li>PHP, Laravel, React JS</li>
+          <li>APIs REST e integraciones</li>
+          <li>PostgreSQL / MySQL</li>
+        </ul>
       </div>
-      <div class="card">
-        <div class="card-icon"><i class="fas fa-robot"></i></div>
-        <h3>IA Conversacional</h3>
-        <p>Asistentes inteligentes con NLP, integración empresarial y chatbots para soporte técnico multicanal.</p>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-cubes"></i></div>
+        <h3>DevOps &amp; Contenedores</h3>
+        <p>Despliegue y orquestación de servicios de forma confiable.</p>
+        <ul>
+          <li>Docker y Kubernetes (kubectl)</li>
+          <li>VMware / VirtualBox</li>
+          <li>Entornos Linux productivos</li>
+        </ul>
       </div>
-      <div class="card">
-        <div class="card-icon"><i class="fas fa-chart-line"></i></div>
-        <h3>Analítica & Visualización</h3>
-        <p>Dashboards interactivos, storytelling con datos, y KPI tracking para decisiones basadas en evidencia.</p>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-network-wired"></i></div>
+        <h3>Redes e Infraestructura</h3>
+        <p>Conectividad y soporte para operaciones sin interrupciones.</p>
+        <ul>
+          <li>Configuración de IP estática</li>
+          <li>Ethernet y PoE</li>
+          <li>Soporte técnico de hardware</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-shield-halved"></i></div>
+        <h3>Ciberseguridad &amp; SOC</h3>
+        <p>Monitoreo y procesamiento de datos para plataformas de seguridad.</p>
+        <ul>
+          <li>Administración de servicios en K8s</li>
+          <li>Integración de APIs de monitoreo</li>
+          <li>Procesamiento de datos de seguridad</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-database"></i></div>
+        <h3>Datos &amp; Automatización</h3>
+        <p>Análisis y automatización de procesos con Python y R.</p>
+        <ul>
+          <li>Análisis de datos con Python / R</li>
+          <li>Automatización de procesos</li>
+          <li>Bases de datos relacionales</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-server"></i></div>
+        <h3>Virtualización</h3>
+        <p>Entornos virtuales para desarrollo, pruebas y producción.</p>
+        <ul>
+          <li>VMware / VirtualBox</li>
+          <li>Entornos Linux</li>
+          <li>Despliegue de servicios</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="section-head">
+      <span class="eyebrow">Herramientas</span>
+      <h2>Stack tecnológico</h2>
+    </div>
+    <div class="stack-group">
+      <h4>Lenguajes de programación</h4>
+      <div class="stack-row">
+        <span class="stack-tag">PHP</span><span class="stack-tag">JavaScript</span><span class="stack-tag">Python</span>
+        <span class="stack-tag">HTML</span><span class="stack-tag">CSS</span><span class="stack-tag">C++</span><span class="stack-tag">R</span>
+      </div>
+    </div>
+    <div class="stack-group">
+      <h4>Infraestructura &amp; DevOps</h4>
+      <div class="stack-row">
+        <span class="stack-tag">Kubernetes</span><span class="stack-tag">Docker</span><span class="stack-tag">VMware</span>
+        <span class="stack-tag">VirtualBox</span><span class="stack-tag">Linux</span>
+      </div>
+    </div>
+    <div class="stack-group">
+      <h4>Frameworks &amp; bases de datos</h4>
+      <div class="stack-row">
+        <span class="stack-tag">Laravel</span><span class="stack-tag">React JS</span><span class="stack-tag">APIs REST</span>
+        <span class="stack-tag">Git</span><span class="stack-tag">PostgreSQL</span><span class="stack-tag">MySQL</span>
       </div>
     </div>
   </section>
 
-  <!-- Proyectos destacados + DEMO mejorada -->
-  <section id="proyectos" class="section">
-    <h2>Proyectos destacados</h2>
-    <p class="section-desc">
-      Soluciones reales que integran inteligencia artificial, automatización y sistemas inteligentes.
-    </p>
-
-    <!-- NUEVA SECCIÓN DE DEMOS INTERACTIVAS - Mejorada profesionalmente -->
+  <section id="proyectos" class="section alt">
+    <div class="section-head">
+      <span class="eyebrow">Portafolio</span>
+      <h2>Proyectos y demos</h2>
+      <p class="section-desc">Prototipos funcionales desarrollados como parte de mi práctica profesional.</p>
+    </div>
     <div class="demo-showcase">
-      <div class="demo-header">
-        <h3><i class="fas fa-flask"></i> Laboratorio de Demos</h3>
-        <p>Explora prototipos funcionales y experiencias interactivas desarrolladas con tecnologías de vanguardia</p>
-      </div>
+      <span class="eyebrow">Ambiente de pruebas</span>
+      <h3>Laboratorio de demos</h3>
+      <p>Sitios web interactivos construidos para distintos rubros, con enfoque en experiencia de usuario y funcionalidad real.</p>
       <div class="demo-cards">
         <div class="demo-card-item">
           <div class="demo-icon"><i class="fas fa-camera"></i></div>
-          <h4>Exhibicion de especificaciones </h4>
-          <p>Visualización dinámica de productos con especificaciones, exhibiendo detalles propios del producto</p>
-          <a href="WebAuto/FormatoProducto.html" class="demo-link" target="_blank">
-            Ver demo <i class="fas fa-arrow-right"></i>
-          </a>
+          <h4>Exhibición de especificaciones</h4>
+          <p>Visualización dinámica de productos con especificaciones técnicas.</p>
+          <a href="WebAuto/FormatoProducto.html" class="demo-link" target="_blank">Ver demo <i class="fas fa-arrow-right"></i></a>
         </div>
         <div class="demo-card-item">
           <div class="demo-icon"><i class="fas fa-store"></i></div>
           <h4>Web de compras</h4>
-          <p>sitio web dinámico de experiencia en ventas y banners</p>
-          <a href="compras/compras.html" class="demo-link" target="_blank">
-            Ver demo <i class="fas fa-arrow-right"></i>
-          </a>
+          <p>Sitio dinámico de experiencia en ventas y banners promocionales.</p>
+          <a href="compras/compras.html" class="demo-link" target="_blank">Ver demo <i class="fas fa-arrow-right"></i></a>
         </div>
-                <div class="demo-card-item">
+        <div class="demo-card-item">
           <div class="demo-icon"><i class="fas fa-th-large"></i></div>
-          <h4>Web de barberia</h4>
-          <p>sitio web para gestion de agenda en servicios de barberia</p>
-          <a href="reservacion/reservacion.html" class="demo-link" target="_blank">
-            Ver demo <i class="fas fa-arrow-right"></i>
-          </a>
+          <h4>Web de barbería</h4>
+          <p>Gestión de agenda para servicios de barbería.</p>
+          <a href="reservacion/reservacion.html" class="demo-link" target="_blank">Ver demo <i class="fas fa-arrow-right"></i></a>
         </div>
         <div class="demo-card-item">
           <div class="demo-icon"><i class="fas fa-utensils"></i></div>
-          <h4>Menu Inteligente</h4>
-          <p>Interfaz moderna para restaurantes con recomendaciones automatizadas</p>
-          <a href="hamburguesa/FormatoComida.html" class="demo-link" target="_blank">
-            Ver demo <i class="fas fa-arrow-right"></i>
-          </a>
+          <h4>Menú inteligente</h4>
+          <p>Interfaz moderna para restaurantes con recomendaciones automatizadas.</p>
+          <a href="hamburguesa/FormatoComida.html" class="demo-link" target="_blank">Ver demo <i class="fas fa-arrow-right"></i></a>
         </div>
-      </div>
-    </div>
-
-    <div class="grid-3">
-      <div class="card">
-        <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-        <h3>SOC con IA</h3>
-        <p>Reducción de falsos positivos usando ML sobre logs SIEM, detección de anomalías en tiempo real y orquestación de respuestas.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon"><i class="fas fa-comment-dots"></i></div>
-        <h3>Chatbot Inteligente</h3>
-        <p>Asistente virtual con procesamiento de lenguaje natural, integración con CRM y automatización de flujos de soporte.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon"><i class="fas fa-database"></i></div>
-        <h3>Analítica Avanzada</h3>
-        <p>Pipelines de datos robustos, limpieza automática y visualizaciones interactivas para equipos de negocio.</p>
       </div>
     </div>
   </section>
 
-  <!-- Contacto con número a WhatsApp -->
-  <section id="contacto" class="section contacto">
-    <div class="contacto-grid">
-      <div class="contacto-info">
-        <h2>Colaboremos</h2>
-        <p>
-          Si buscas integrar inteligencia artificial en tu organización, automatizar procesos o desarrollar sistemas inteligentes a medida, conversemos.
-        </p>
-        <p><i class="fas fa-envelope"></i> <a href="mailto:ing.exequielsanhueza@gmail.com">ing.exequielsanhueza@gmail.com</a></p>
-        <button class="btn-wtsp" onclick="window.open('https://wa.me/56977484997?text=Hola%20Exequiel,%20me%20interesa%20colaborar%20contigo%20en%20un%20proyecto%20de%20IA.', '_blank')"><i class="fab fa-whatsapp"></i> Escribir por WhatsApp</button>
-        <button class="btn-mail" onclick="window.open('mailto:ing.exequielsanhueza@gmail.com')">
-          <i class="fas fa-paper-plane"></i> Enviar correo
-        </button>
+  <section id="formacion" class="section">
+    <div class="section-head">
+      <span class="eyebrow">Formación</span>
+      <h2>Educación y certificaciones</h2>
+    </div>
+    <div class="edu-grid" style="margin-bottom:1.5rem;">
+      <div class="edu-card">
+        <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
+        <div>
+          <h3>Ingeniería Civil Informática</h3>
+          <div class="period">Universidad Católica de Temuco · 2021 – 2026</div>
+          <p>Mención Tecnologías de la Información. Desarrollo de software, bases de datos y análisis de datos, arquitectura y despliegue de sistemas.</p>
+        </div>
       </div>
-      <div class="contacto-foto">
-        <img src="src/me.jpeg" alt="Exequiel Sanhueza - Ingeniero IA">
+      <div class="edu-card">
+        <div class="edu-icon"><i class="fas fa-microchip"></i></div>
+        <div>
+          <h3>Técnico en Electrónica</h3>
+          <div class="period">Liceo Técnico Industrial de Temuco · 2016 – 2020</div>
+          <p>Formación técnica en electrónica, base para el trabajo posterior en redes e infraestructura.</p>
+        </div>
+      </div>
+    </div>
+    <div class="edu-grid">
+      <div class="cert-card">
+        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+        <div>
+          <h3>Conceptos Básicos de Redes</h3>
+          <div class="period">Cisco Networking Academy · UC Temuco · 2024</div>
+          <p>Curso avalado por Cisco, enfocado en fundamentos de redes: protocolos, topologías, configuración básica de dispositivos y seguridad de red.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="section alt">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <span class="eyebrow">Hablemos</span>
+        <h2>Conversemos sobre tu proyecto</h2>
+        <p class="lead">Si tu empresa necesita desarrollo a medida, soporte de infraestructura o quiere sumar a alguien en prácticas, escríbeme.</p>
+        <div class="contact-list">
+          <a href="mailto:ing.exequielsanhueza@gmail.com"><i class="fas fa-envelope"></i> ing.exequielsanhueza@gmail.com</a>
+          <span><i class="fas fa-phone"></i> +569 7748 4997</span>
+          <span><i class="fas fa-location-dot"></i> Maquehue Zanja, Padre Las Casas, Araucanía, Chile</span>
+          <a href="https://exequlel.github.io/AboutMe/" target="_blank"><i class="fas fa-globe"></i> exequlel.github.io/AboutMe</a>
+        </div>
+        <div class="contact-btns">
+          <button class="btn-wtsp" onclick="window.open('https://wa.me/56977484997?text=Hola%20Benjam%C3%ADn,%20me%20interesa%20conversar%20sobre%20un%20proyecto.', '_blank')"><i class="fab fa-whatsapp"></i> Escribir por WhatsApp</button>
+          <button class="btn-mail" onclick="window.open('mailto:ing.exequielsanhueza@gmail.com')"><i class="fas fa-paper-plane"></i> Enviar correo</button>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="avail"><span class="dot"></span> Disponible para nuevos proyectos</div>
+        <h3>Benjamín Exequiel Sanhueza Rain</h3>
+        <p>Ingeniero Civil Informático en formación (2021–2026), Universidad Católica de Temuco. Con base técnica en electrónica y experiencia práctica en ciberseguridad, DevOps y soporte de infraestructura.</p>
       </div>
     </div>
   </section>
 </main>
 
 <footer>
-  <i class="far fa-copyright"></i> 2025 Exequiel Sanhueza Rain — Ingeniería en Inteligencia Artificial y Sistemas
+  <i class="far fa-copyright"></i> 2025 Benjamín Exequiel Sanhueza Rain — Ingeniería Civil Informática
 </footer>
 
 </body>
